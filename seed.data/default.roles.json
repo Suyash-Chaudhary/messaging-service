@@ -1,0 +1,46 @@
+[
+    {
+        "Name": "Member",
+        "Privileges": [
+            "SendMessageToThread"
+        ]
+    },
+    {
+        "Name": "Moderator",
+        "Privileges": [
+            "CreateThread",
+            "AddUserToThread",
+            "RemoveUserFromThread",
+            "DeleteMessagefromThread",
+            "SendMessageToThread",
+            "DeleteThread"
+        ]
+    },
+    {
+        "Name": "Admin",
+        "Privileges": [
+            "CreateThread",
+            "AddUserToNamespace",
+            "RemoveUserFromNamespace",
+            "AddUserToThread",
+            "RemoveUserFromThread",
+            "DeleteMessagefromThread",
+            "SendMessageToThread",
+            "DeleteThread"
+        ]
+    },
+    {
+        "Name": "Owner",
+        "Privileges": [
+            "CreateThread",
+            "AddUserToNamespace",
+            "RemoveUserFromNamespace",
+            "AddUserToThread",
+            "RemoveUserFromThread",
+            "DeleteMessagefromThread",
+            "SendMessageToThread",
+            "DeleteThread",
+            "DeleteNamespace"
+        ]
+    }
+]
