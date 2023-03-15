@@ -1,6 +1,6 @@
 import express from "express";
 import { Logger } from "../common/logger";
-import { register as registerUserRoutes } from "..//api/users/user.routes";
+import { register as registerParticipantRoutes } from "../api/participants/participant.routes";
 import { register as registerMessageRoutes } from "..//api/messages/message.routes";
 import { register as registerThreadRoutes } from "..//api/threads/thread.routes";
 import { register as registerNamespaceRoutes } from "..//api/namespaces/namespace.routes";
@@ -22,7 +22,7 @@ export class Router {
           message: `Careplan Service API [Version ${process.env.API_VERSION}]`,
         });
       });
-      registerUserRoutes(this._app);
+      registerParticipantRoutes(this._app);
       registerMessageRoutes(this._app);
       registerMembershipRoutes(this._app);
       registerThreadRoutes(this._app);

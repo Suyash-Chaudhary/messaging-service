@@ -1,15 +1,15 @@
 import express from "express";
 import { ResponseHandler } from "../../common/response.handler";
-import { UserControllerDelegate } from "./user.controller.delegate";
+import { ParticipantControllerDelegate } from "./participant.controller.delegate";
 
-export class UserController {
-  _delegate = new UserControllerDelegate();
+export class ParticipantController {
+  _delegate = new ParticipantControllerDelegate();
 
   create = async (req: express.Request, res: express.Response) => {
     try {
       // Authorize request.
       const record = await this._delegate.create(req);
-      const message = "Successfully created User";
+      const message = "Successfully created Participant";
       ResponseHandler.success(req, res, message, 200, record);
     } catch (error) {
       ResponseHandler.handleError(req, res, error);
@@ -20,7 +20,7 @@ export class UserController {
     try {
       // Authorize request.
       const record = await this._delegate.update(req);
-      const message = "Successfully updated User";
+      const message = "Successfully updated Participant";
       ResponseHandler.success(req, res, message, 200, record);
     } catch (error) {
       ResponseHandler.handleError(req, res, error);
@@ -31,7 +31,7 @@ export class UserController {
     try {
       // Authorize request.
       const records = await this._delegate.search(req);
-      const message = "Successfully found Users";
+      const message = "Successfully found Participants";
       ResponseHandler.success(req, res, message, 200, records);
     } catch (error) {
       ResponseHandler.handleError(req, res, error);
@@ -42,7 +42,7 @@ export class UserController {
     try {
       // Authorize request.
       const record = await this._delegate.destroy(req);
-      const message = "Successfully destroyed User";
+      const message = "Successfully destroyed Participant";
       ResponseHandler.success(req, res, message, 200, record);
     } catch (error) {
       ResponseHandler.handleError(req, res, error);
@@ -53,7 +53,7 @@ export class UserController {
     try {
       // Authorize request.
       const record = await this._delegate.getById(req);
-      const message = "Successfully found User";
+      const message = "Successfully found Participant";
       ResponseHandler.success(req, res, message, 200, record);
     } catch (error) {
       ResponseHandler.handleError(req, res, error);

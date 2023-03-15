@@ -1,18 +1,18 @@
 import { BaseSearchModel } from "./base.types";
 
-export interface UserCreateModel {
+export interface ParticipantCreateModel {
   Name: string;
   Phone: string;
   Email?: string;
 }
 
-export interface UserUpdateModel {
+export interface ParticipantUpdateModel {
   Name?: string;
   Phone?: string;
   Email?: string;
 }
 
-export interface UserSearchModel extends BaseSearchModel {
+export interface ParticipantSearchModel extends BaseSearchModel {
   Phone?: string;
   Email?: string;
 }

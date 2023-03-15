@@ -1,5 +1,7 @@
 import * as db from "../database.connector";
 import DataTypes from "sequelize";
+import { ParticipantModel } from "./participant.model";
+import { ThreadModel } from "./thread.model";
 const sequelize = db.default.sequelize;
 
 export class ConversationModel {
@@ -12,7 +14,7 @@ export class ConversationModel {
       allowNull: false,
       primaryKey: true,
     },
-    UserId: {
+    ParticipantId: {
       type: DataTypes.UUID,
       foreignKey: true,
       allowNull: false,
@@ -39,22 +41,22 @@ export class ConversationModel {
       indexes: [
         {
           unique: true,
-          fields: ["UserId", "ThreadId"],
+          fields: ["ParticipantId", "ThreadId"],
         },
       ],
     }
   );
   static associate = (models) => {
     // Conversation belongs to a user.
-    models.Conversation.belongsTo(models.User, {
-      sourceKey: "UserId",
-      name: "User",
+    models.Conversation.belongsTo(models.Participant, {
+      sourceKey: "ParticipantId",
+      name: ParticipantModel.Model,
       targetKey: "id",
     });
     // Conversation belongs to a thread.
     models.Conversation.belongsTo(models.Thread, {
       sourceKey: "ThreadId",
-      name: "Thread",
+      name: ThreadModel.Model,
       targetKey: "id",
     });
   };

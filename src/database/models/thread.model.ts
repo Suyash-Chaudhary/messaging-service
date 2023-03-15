@@ -48,10 +48,10 @@ export class ThreadModel {
     });
 
     // Thread belongs to many users.
-    models.Thread.belongsToMany(models.User, {
+    models.Thread.belongsToMany(models.Participant, {
       through: ConversationModel.Model,
       foreignKey: "ThreadId",
-      otherKey: "UserId",
+      otherKey: "ParticipantId",
     });
 
     // Thread has many messages.

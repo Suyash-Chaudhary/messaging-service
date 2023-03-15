@@ -1,5 +1,8 @@
 import * as db from "../database.connector";
 import DataTypes from "sequelize";
+import { ParticipantModel } from "./participant.model";
+import { NamespaceModel } from "./namespace.model";
+import { RoleModel } from "./role.model";
 const sequelize = db.default.sequelize;
 
 export class MembershipModel {
@@ -12,7 +15,7 @@ export class MembershipModel {
       allowNull: false,
       primaryKey: true,
     },
-    UserId: {
+    ParticipantId: {
       type: DataTypes.UUID,
       foreignKey: true,
       allowNull: false,
@@ -45,28 +48,28 @@ export class MembershipModel {
       indexes: [
         {
           unique: true,
-          fields: ["UserId", "NamespaceId"],
+          fields: ["ParticipantId", "NamespaceId"],
         },
       ],
     }
   );
   static associate = (models) => {
     // Membership belongs to a user.
-    models.Membership.belongsTo(models.User, {
-      sourceKey: "UserId",
-      name: "User",
+    models.Membership.belongsTo(models.Participant, {
+      sourceKey: "ParticipantId",
+      name: ParticipantModel.Model,
       targetKey: "id",
     });
     // Membership belongs to a namespace.
     models.Membership.belongsTo(models.Namespace, {
       sourceKey: "NamespaceId",
-      name: "Namespace",
+      name: NamespaceModel.Model,
       targetKey: "id",
     });
     // Membership belongs to a role.
     models.Membership.belongsTo(models.Role, {
       sourceKey: "RoleId",
-      name: "Role",
+      name: RoleModel.Model,
       targetKey: "id",
     });
   };

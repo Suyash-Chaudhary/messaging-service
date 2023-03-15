@@ -1,5 +1,7 @@
 import * as db from "../database.connector";
 import DataTypes from "sequelize";
+import { ParticipantModel } from "./participant.model";
+import { ThreadModel } from "./thread.model";
 const sequelize = db.default.sequelize;
 
 export class MessageModel {
@@ -41,15 +43,15 @@ export class MessageModel {
   });
   static associate = (models) => {
     // Message belongs to a sender.
-    models.Message.belongsTo(models.User, {
+    models.Message.belongsTo(models.Participant, {
       sourceKey: "SenderId",
-      name: "Sender",
+      name: ParticipantModel.Model,
       targetKey: "id",
     });
     // Message belongs to a thread.
     models.Message.belongsTo(models.Thread, {
       sourceKey: "ThreadId",
-      name: "Thread",
+      name: ThreadModel.Model,
       targetKey: "id",
     });
   };

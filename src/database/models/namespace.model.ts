@@ -40,10 +40,10 @@ export class NamespaceModel {
     });
 
     // Namespace belongs to many users.
-    models.Namespace.belongsToMany(models.User, {
+    models.Namespace.belongsToMany(models.Participant, {
       through: MembershipModel.Model,
       foreignKey: "NamespaceId",
-      otherKey: "UserId",
+      otherKey: "ParticipantId",
     });
   };
 }

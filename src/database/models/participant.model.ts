@@ -4,9 +4,9 @@ import { MembershipModel } from "./membership.model";
 import { ConversationModel } from "./conversation.model";
 const sequelize = db.default.sequelize;
 
-export class UserModel {
-  static ModelName = "User";
-  static TableName = "users";
+export class ParticipantModel {
+  static ModelName = "Participant";
+  static TableName = "participants";
   static Schema = {
     id: {
       type: DataTypes.UUID,
@@ -31,29 +31,33 @@ export class UserModel {
     CreatedAt: DataTypes.DATE,
     UpdatedAt: DataTypes.DATE,
   };
-  static Model = sequelize.define(UserModel.ModelName, UserModel.Schema, {
-    timestamps: true,
-    freezeTableName: true,
-    createdAt: "CreatedAt",
-    updatedAt: "UpdatedAt",
-    tableName: UserModel.TableName,
-  });
+  static Model = sequelize.define(
+    ParticipantModel.ModelName,
+    ParticipantModel.Schema,
+    {
+      timestamps: true,
+      freezeTableName: true,
+      createdAt: "CreatedAt",
+      updatedAt: "UpdatedAt",
+      tableName: ParticipantModel.TableName,
+    }
+  );
   static associate = (models) => {
-    // User has many messages.
-    models.User.hasMany(models.Message, {
+    // Participant has many messages.
+    models.Participant.hasMany(models.Message, {
       sourceKey: "id",
       foreignKey: "SenderId",
     });
-    // User belongs to many namespaces.
-    models.User.belongsToMany(models.Namespace, {
+    // Participant belongs to many namespaces.
+    models.Participant.belongsToMany(models.Namespace, {
       through: MembershipModel.Model,
-      foreignKey: "UserId",
+      foreignKey: "ParticipantId",
       otherKey: "NamespaceId",
     });
-    // User belongs to many threads.
-    models.User.belongsToMany(models.Thread, {
+    // Participant belongs to many threads.
+    models.Participant.belongsToMany(models.Thread, {
       through: ConversationModel.Model,
-      foreignKey: "UserId",
+      foreignKey: "ParticipantId",
       otherKey: "ThreadId",
     });
   };
